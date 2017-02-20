@@ -100,6 +100,15 @@
             "schema" : {
               "$ref" : "#/definitions/NryDocumentMetadataStandalone"
             }
+          },
+          "400" : {
+            "description" : "The parameters json is invalid - bad JSON format"
+          },
+          "401" : {
+            "description" : "Wrong JWT auth (for /private/)"
+          },
+          "500" : {
+            "description" : "Internal server error"
           }
         }
       }
@@ -117,6 +126,15 @@
         "responses" : {
           "200" : {
             "description" : "Document content (body), with content-type optionally provided (or `application/octet-stream` if unknown)"
+          },
+          "401" : {
+            "description" : "JWT auth is required (for /private/)"
+          },
+          "404" : {
+            "description" : "Object not found"
+          },
+          "500" : {
+            "description" : "Internal server error"
           }
         }
       }
@@ -168,7 +186,7 @@
         },
         "id" : {
           "type" : "string",
-          "description" : "notary-unique internal document identifier, uuid4. Different users may send same file to notarize, having same doc_id but different UUID identifiers, which"
+          "description" : "notary-unique internal document identifier, uuid4. Different users may send same file to notarize, having same doc_id but different UUID identifiers, which makes it possible to reference concrete notarization request even if doc_ids are same"
         },
         "attributes" : {
           "properties" : {
@@ -180,20 +198,36 @@
               "type" : "string",
               "description" : "URN participant identifier of the document sender"
             },
-            "location" : {
-              "type" : "string",
-              "description" : "relative URL where the notarized document may be found"
-            },
             "created" : {
               "type" : "string",
               "description" : "ISO document creation time"
             },
+            "restrict_list" : {
+              "type" : "array",
+              "description" : "list of businesses allowed to access this object",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "is_public" : {
+              "type" : "boolean",
+              "description" : "shows if object is public or private"
+            },
+            "location" : {
+              "type" : "string",
+              "description" : "relative URL where the notarized document may be found"
+            },
             "durability" : {
               "type" : "string",
-              "description" : "host till ISO datetime, after that date hosting MAY be provided, but not SHOULD be."
+              "description" : "host till ISO datetime, after that date hosting MAY be provided, but not SHOULD be"
+            },
+            "network" : {
+              "type" : "string",
+              "description" : "the value of `network` attribute MUST be a valid business identifier URN per the DCP and DCL specifications"
             },
             "ac_code" : {
-              "description" : "ac_code field from spec describes publicity of the target items: HocDetails and notarized document."
+              "type" : "string",
+              "description" : "describes publicity of HocDetail and notarized document."
             }
           }
         }
