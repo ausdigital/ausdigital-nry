@@ -66,7 +66,7 @@
             }
           },
           "400" : {
-            "description" : "* Invalid participant id field_name : value doesn't start with 'urn:oasis:names:tc:ebcore:partyid-type' prefix\n* Invalid participant id field_name : value doesn't have any :: delimiter\n* Unknown field_name datetime format (ISO 8601)\n* field_name must have a timezone (ISO 8601)\n"
+            "description" : "* Invalid participant id {field_name} : value doesn't start with 'urn:oasis:names:tc:ebcore:partyid-type' prefix\n* Invalid participant id {field_name} : value doesn't have any :: delimiter\n* Unknown {field_name} datetime format (ISO 8601)\n* {field_name} must have a timezone (ISO 8601)\n"
           },
           "401" : {
             "description" : "* Wrong JWT auth (for /private/)\n* Can't determine your participant_id - please pass correct JWT (for /private/)\n"
@@ -94,7 +94,7 @@
           "type" : "file",
           "required" : true
         }, {
-          "description" : "json file with parameters",
+          "description" : "JSON file with parameters. Shall be valid against schema https://github.com/ausdigital/ausdigital-nry/blob/master/resources/1.0/spec/nry_post_param.schema\n",
           "in" : "formData",
           "name" : "parameters",
           "type" : "file",
@@ -108,7 +108,7 @@
             }
           },
           "400" : {
-            "description" : "* The parameters json is invalid - bad JSON format\n* Invalid participant id field_name : value doesn't start with 'urn:oasis:names:tc:ebcore:partyid-type' prefix\n* Invalid participant id field_name : value doesn't have any :: delimiter\n* Sorry, maximal object size is 100MB currently\n* Unknown 'durability' datetime format (ISO 8601)\n* 'durability' must have a timezone (ISO 8601)\n* 'durability' must be at least one month in future\n* ac_code field must be present and be one of the next values: '0', '1', '2', '3' for ausdigital-nry/1 spec\n* restrict_list must not be filled for ac_code = 0\n* network attribute doesn't equal to this notary participant ID, so object must be private (public requested instead)\n* For ac_code {ac_code} object must be {public/private} ({public/private} passed)\n"
+            "description" : "* The parameters json is invalid - bad JSON format\n* Invalid participant id {field_name} : value doesn't start with 'urn:oasis:names:tc:ebcore:partyid-type' prefix\n* Invalid participant id {field_name} : value doesn't have any :: delimiter\n* Sorry, maximal object size is 100MB currently\n* Unknown 'durability' datetime format (ISO 8601)\n* 'durability' must have a timezone (ISO 8601)\n* 'durability' must be at least one month in future\n* ac_code field must be present and be one of the next values: '0', '1', '2', '3' for ausdigital-nry/1 spec\n* restrict_list must not be filled for ac_code = 0\n* network attribute doesn't equal to this notary participant ID, so object must be private (public requested instead)\n* For ac_code {ac_code} object must be {public/private} ({public/private} passed)\n"
           },
           "401" : {
             "description" : "* Wrong JWT auth (for /private/)\n* Can't determine your participant_id - please pass correct JWT (for /private/)\n"
@@ -151,7 +151,7 @@
     "/archives/" : {
       "get" : {
         "summary" : "Get list of archives",
-        "description" : "Helper endpoint to see the list of already notarized items. Replaces gazette for debug purposes and easiness.\n",
+        "description" : "Helper endpoint to see the list of already notarized items. Replaces gazette for debug purposes and easiness. Response format shall be self-explanatory and may change without notice.\n",
         "responses" : {
           "200" : {
             "description" : "List of the archives"
