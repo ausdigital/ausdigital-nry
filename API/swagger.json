@@ -85,6 +85,7 @@
           "JWT" : [ ]
         } ],
         "description" : "multipart/form-data request to notarize some object.",
+        "consumes" : [ "multipart/form-data" ],
         "parameters" : [ {
           "$ref" : "#/parameters/namespace"
         }, {
